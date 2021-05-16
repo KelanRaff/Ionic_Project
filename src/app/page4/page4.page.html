@@ -1,10 +1,39 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Weather Last Week</ion-title>
-      <ion-back-button></ion-back-button>
+    <ion-title>My Information</ion-title>
+      <ion-back-button color="danger"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+   <!-- display information -->
+  <ion-label>My Age is {{myAge}}</ion-label>
 
+  <ion-list>
+    <ion-radio-group [(ngModel)]="myAge">
+      <!-- option 1 (18-30) -->
+      <ion-item>
+        <ion-label> 18-30 years old</ion-label>
+        <ion-radio value="18-30"></ion-radio>
+      </ion-item>
+      <!-- option 2 (31-40) -->
+      <ion-item>
+        <ion-label> 31-40 years old</ion-label>
+        <ion-radio value="31-40"></ion-radio>
+      </ion-item>
+      <!-- option 3 (40-50) -->
+      <ion-item>
+        <ion-label> 40-50 years old</ion-label>
+        <ion-radio value="40-50"></ion-radio>
+      </ion-item>
+      <!-- option 4 (60+) -->
+      <ion-item>
+        <ion-label> Over 60 years old</ion-label>
+        <ion-radio value="60+"></ion-radio>
+      </ion-item>
+
+
+    </ion-radio-group>
+  </ion-list>
+  <ion-button (click)="updateStatus()"> Update Details</ion-button>
 </ion-content>

@@ -1,21 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Weather Application
+      Galway Weather Application
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
+
+  <!-- nav buttons -->
+  <ul>
+    <button mat-raised-button color="primary" [routerLink]="['/page2']" routerDirection="forward">Forecast</button>
+    <button mat-raised-button color="primary" [routerLink]="['/page3']" routerDirection="forward">Current Weather</button>
+    <button mat-raised-button color="primary" [routerLink]="['/page4']" routerDirection="forward">My Information</button>
+  </ul>
+  <!--user info -->
+  <ion-title> Personal Information:</ion-title>
+  <ion-label> My Age is {{myAge}} </ion-label>
+
+    <!-- weather info -->
+<ion-title> Weather For Next 7 Days:</ion-title>
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">Weather Application</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <ul>
-    <li [routerLink]="['/page2']" routerDirection="forward">Current Weather</li>
-    <li [routerLink]="['/page3']" routerDirection="forward">Forecast</li>
-    <li [routerLink]="['/page4']" routerDirection="forward">Historical Weather</li>
-  </ul>>
+ 
+  <ion-list *ngIf="monthlyWeatherData">
+    <ion-item *ngFor="let weather of monthlyWeatherData">
+      <ion-item-group>
+          <ion-label>{{weather.temperatureMax}}</ion-label>
+          <ion-label>{{weather.temperatureMin}}</ion-label>
+      </ion-item-group>
+    </ion-item>
+  </ion-list>
+  <hr>
+  <!-- gps plugin  -->
+  <h2>GPS</h2>
+  <ion-button (click)=GPS()>GPS</ion-button>
+  <br>
+  {{lat}}, {{long}}
 </ion-content>

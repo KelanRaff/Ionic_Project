@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import  { Storage } from '@ionic/storage';
+import { NavController} from '@ionic/angular';
 
 @Component({
   selector: 'app-page4',
@@ -6,10 +8,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./page4.page.scss'],
 })
 export class Page4Page implements OnInit {
+  
+  myAge:string = "undefined";
+  constructor(private storage:Storage, private navCtrl:NavController ) {}
 
-  constructor() { }
+  ngOnInit(){  
+    this.storage.get("age")
+    .then((data)=>{
+      this.myAge=data;
+    })
+  }
 
-  ngOnInit() {
+  updateStatus(){
+    this.storage.set('age',this.myAge)
+    .then(()=>{
+      this.navCtrl.navigateBack('/home')
+    })
+    .catch()
   }
 
 }
+

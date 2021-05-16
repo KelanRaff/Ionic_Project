@@ -4,6 +4,8 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
+import { MatTableModule } from '@angular/material/table';
+
 import { Page2PageRoutingModule } from './page2-routing.module';
 
 import { Page2Page } from './page2.page';
@@ -13,7 +15,8 @@ import { Page2Page } from './page2.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    Page2PageRoutingModule
+    Page2PageRoutingModule,
+    MatTableModule
   ],
   declarations: [Page2Page]
 })

@@ -1,10 +1,62 @@
 <ion-header>
   <ion-toolbar>
-      <ion-title>Current Weather Status</ion-title>
-      <ion-back-button></ion-back-button>
+      <ion-title>This Week's Forecast</ion-title>
+      <ion-back-button color="danger"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
- 
+  <!-- Daily Weather Data -->
+  <!-- weather info table -->
+  <span id="weatherTable" *ngIf="monthlyWeatherData">
+    <table mat-table [dataSource]="monthlyWeatherData">
+
+      <!-- date -->
+      <ng-container matColumnDef="dayOfWeek">
+        <th mat-header-cell *matHeaderCellDef> Day </th>
+        <td mat-cell *matCellDef="let day">  {{day.time}} </td>
+      </ng-container>
+
+      <!-- max temperature -->
+      <ng-container matColumnDef="temperatureMax">
+        <th mat-header-cell *matHeaderCellDef> Max Temperature(°C) </th>
+        <td mat-cell *matCellDef="let day">  {{day.temperatureMax}} </td>
+      </ng-container>
+
+      <!-- min temperature -->
+      <ng-container matColumnDef="temperatureMin">
+        <th mat-header-cell *matHeaderCellDef> Min Temperature(°C) </th>
+        <td mat-cell *matCellDef="let day">  {{day.temperatureMin}} </td>
+      </ng-container>
+
+      <!-- pressure -->
+      <ng-container matColumnDef="preasure">
+        <th mat-header-cell *matHeaderCellDef> Pressure(Pa) </th>
+        <td mat-cell *matCellDef="let day">  {{day.preasure}} </td>
+      </ng-container>
+
+      <!-- Humidity -->
+      <ng-container matColumnDef="relHumidity">
+        <th mat-header-cell *matHeaderCellDef> Humidity </th>
+        <td mat-cell *matCellDef="let day">  {{day.relHumidity}} </td>
+      </ng-container>
+      
+      <!-- Rain -->
+      <ng-container matColumnDef="rain">
+        <th mat-header-cell *matHeaderCellDef> Rain(m2) </th>
+        <td mat-cell *matCellDef="let day">  {{day.rain}} </td>
+      </ng-container>
+
+      <!-- wind speed -->
+      <ng-container matColumnDef="windSpeed">
+        <th mat-header-cell *matHeaderCellDef> Wind Speed </th>
+        <td mat-cell *matCellDef="let day">  {{day.windSpeed}} </td>
+      </ng-container>
+
+     
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </span>
 </ion-content>

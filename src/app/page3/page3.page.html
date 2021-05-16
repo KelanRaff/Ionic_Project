@@ -1,10 +1,62 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Today's Forecast</ion-title>
-    <ion-back-button></ion-back-button>
+    <ion-title>Current Hourly Forecast</ion-title>
+    <ion-back-button color="danger"></ion-back-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+   <!-- Hourly Weather Data -->
+  <!-- weather info table -->
+  <span id="weatherTable" *ngIf="monthlyWeatherData">
+    <table mat-table [dataSource]="monthlyWeatherData">
 
+      <!-- Hour -->
+      <ng-container matColumnDef="time">
+        <th mat-header-cell *matHeaderCellDef> Time </th>
+        <td mat-cell *matCellDef="let day">  {{day.time}} </td>
+      </ng-container>
+
+      <!-- weather -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Weather </th>
+        <td mat-cell *matCellDef="let day">  {{day.type}} </td>
+      </ng-container>
+
+      <!-- max Temperature -->
+      <ng-container matColumnDef="temperatureMax">
+        <th mat-header-cell *matHeaderCellDef> Max Temperature(°C) </th>
+        <td mat-cell *matCellDef="let day">  {{day.temperatureMax}} </td>
+      </ng-container>
+
+       <!-- min Temperature -->
+      <ng-container matColumnDef="temperatureMin">
+        <th mat-header-cell *matHeaderCellDef> Min Temperature(°C) </th>
+        <td mat-cell *matCellDef="let day">  {{day.temperatureMin}} </td>
+      </ng-container>
+
+       <!-- could cover -->
+      <ng-container matColumnDef="cloudCover">
+        <th mat-header-cell *matHeaderCellDef> Cloud Cover </th>
+        <td mat-cell *matCellDef="let day">  {{day.cloudCover}} </td>
+      </ng-container>
+      
+       <!-- rain -->
+      <ng-container matColumnDef="rain">
+        <th mat-header-cell *matHeaderCellDef> Rain(m2) </th>
+        <td mat-cell *matCellDef="let day">  {{day.rain}} </td>
+      </ng-container>
+
+       <!-- wind speed -->
+      <ng-container matColumnDef="windSpeed">
+        <th mat-header-cell *matHeaderCellDef> Wind Speed </th>
+        <td mat-cell *matCellDef="let day">  {{day.windSpeed}} </td>
+      </ng-container>
+
+     
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </span>
 </ion-content>

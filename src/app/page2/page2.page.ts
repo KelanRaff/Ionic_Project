@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {WeatherService} from '../Services/weather.service';
 
 @Component({
   selector: 'app-page2',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class Page2Page implements OnInit {
 
-  constructor() { }
+  monthlyWeatherData:any = [];
 
-  ngOnInit() {
+  displayedColumns: string[] = ['dayOfWeek', 'temperatureMax', 'temperatureMin','preasure', 'relHumidity', 'rain', 'windSpeed'];
+  
+  constructor(private weatherService:WeatherService) {}
+
+  ngOnInit(){
+    this.weatherService.GetWeatherData().subscribe(
+      (result)=>{
+        this.monthlyWeatherData = result.data.daily;
+      }
+    );
   }
 
 }
